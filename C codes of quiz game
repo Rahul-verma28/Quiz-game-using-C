@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <ctype.h>
+void startgame();
+void quitgame();
+void help();
+
+int main()
+{
+    printf("Welcome to Quiz Game:-----------------------------------------------------------\n");
+    char choice;
+    int score, numberofQuestions;
+    mainhome:
+        printf("Enter 'S' to Start the game:        \n");
+        printf("Enter 'Q' to Quit the game:        \n");
+        printf("Enter 'H' to Help in Game:        \n");
+        scanf("%c", &choice);
+        choice = toupper(choice);
+
+    switch(choice){
+        case 'S':
+        startgame();
+        break;
+        case 'Q':
+        quitgame();
+        break;
+        case 'H':
+        help();
+        break;
+    }
+    return 0;
+}
+
+void startgame(){
+    //Other questions can more instrusting
+    char questions[][100] = {"1.Which of the following is the first calculating device?:",
+                             "2.The metal whose salts are sensitive to light is?:",
+                             "3.Who are the two badminton players to ever win an Olympic medal?:",
+                             "4.Which was the world's first succesful electronic computer?:",
+                             "5.The country that has the highest in Barley Production?:",
+                             "6.Which Indian woman wrestler won a bronze in the Rio Olympic?:",
+                             "7.Which of the following is also called translater?:",
+                             "8.Which of the following river flows between vindhyan and stpura ranges?:",
+                             "9.Who among the following wrote Sanskrit grammer?:",
+                             "10.Which of the following country has hosted the Commonwealth Games maximum number of times?:"};
+
+    char options[][100] = {"A.Abacus.", "B.Calculater.", "C.Turing Machine.", "D.Pascaline.",
+                           "A.Zinc.", "B.Silver.", "C.Copper.", "D.Aluminium.",
+                           "A.PV Sindhu and Saina Nehwal.", "B.PV Sindhu and Tanvi Lad.", "C.Ritupal Das and Saina Nehwal.", "D.Saina Nehwal and Tanvi lad.",
+                           "A.PARAM.", "B.CRAY-1.", "C.Pascaline.", "D.ENIAC (electronic Numerical Integrator and computer).",
+                           "A.Canada.", "B.Germany.", "C.Russia.", "D.India.",
+                           "A.Nirmala Devi.", "B.Gargi Yadav.", "C.Shakshi Malik.", "D.Manu Tomar.",
+                           "A.Data representation.", "B.MS-DOS.", "C.Operating System.", "D.Language Processor.",
+                           "A.Narmada.", "B.Mahanadi.", "C.Son.", "D.Netravati.",
+                           "A.Kalidasa.", "B.Charak.", "C.Panini.", "D.Aryabhatt.",
+                           "A.Australia.", "B.Germany.", "C.Canada.", "D.India."};
+
+    char answers[10] = {'A', 'B', 'A', 'D', 'C', 'C', 'D', 'A', 'C', 'A'};
+    int numberofQuestions = sizeof(questions) / sizeof(questions[0]);
+
+    char select;
+    int score;
+    
+    printf("Lets play Quiz Game  \n");
+    for (int i = 0; i < numberofQuestions; i++)
+    {
+        printf("*****************************************************\n");
+        printf("%s\n", questions[i]);
+
+        for (int j = (i * 4); j < (i * 4) + 4; j++)
+        {
+            printf("%s\n", options[j]);
+        }
+
+        printf("Select: ");
+        scanf("%c", &select);
+        scanf("%c");
+
+        select = toupper(select);
+
+        if (select == answers[i])
+        {
+            printf("CORRECT!\n");
+            score++;
+        }
+        else
+        {
+            printf("WRONG!!! The correct answer is %c\n", answers[i]);
+        }
+    }
+    printf("************************************************\n");
+    printf("FINAL SCORE: %d/%d\n", score, numberofQuestions);
+    printf("************************************************\n");
+}
+void quitgame(){
+    printf("End of game.");
+}
+void help(){
+    printf("\t\t\tHELP\n");
+    printf("This game is very easy to play. You'll be asked some general knowledge questions\n");
+    printf("and the right answer is to be chosen among the four options provided.\n");
+    printf("Your score will be calculated at the end.\n");
+    printf("So BEST OF LUCK.\n");
+}
